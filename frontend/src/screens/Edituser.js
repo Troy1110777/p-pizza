@@ -26,20 +26,21 @@ const Edituser = ({ user }) => {
         console.log('edit user: ', editeduser)
         dispatch(editUserRole(editeduser))
     }
-    return <Fragment >
-        <tr className='col-md-9'><td style={{ fontSize: '14px' }}>{user.name}</td>
-            <td style={{ fontSize: '14px' }}>
+    return (<tr className='col-md-5'>
+        {/* <tr style={{ fontSize: '6px' }}> */}
+            <td style={{ fontSize: '12px' }}>{user.name}</td>
+            <td style={{ fontSize: '12px' }}>
                 {user.email}
             </td>
-            <td style={{ fontSize: '14px' }}>{user.createdAt}</td>
-            <td style={{ fontSize: '14px' }}>
+            <td style={{ fontSize: '12px' }}>{user.createdAt}</td>
+            <td style={{ fontSize: '12px' }}>
                 {user.isAdmin ? <p>Admin</p> : <p>User</p>}
             </td>
             <td >
                 <i className='fa fa-trash m-3' style={{ cursor: 'pointer' }} ></i>
                 <i className='fa fa-edit m-3' style={{ cursor: 'pointer' }} onClick={handleShow}></i>
             </td>
-
+        
             <Modal show={show} onHide={handleClose} style={{ 'z-index': '600000' }}>
                 <Modal.Header closeButton>
                     <Modal.Title>{user.name}</Modal.Title>
@@ -62,7 +63,8 @@ const Edituser = ({ user }) => {
                     <button className="btn" onClick={handleClose}>CLOSE</button>
                 </Modal.Footer>
             </Modal>
-        </tr>
-    </Fragment>
+            
+        {/* </tr> */}
+    </tr>)
 }
 export default Edituser

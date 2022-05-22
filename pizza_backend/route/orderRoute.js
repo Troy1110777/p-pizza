@@ -23,13 +23,7 @@ router.post("/placeorder", async (req, res) => {
         })
         //console.log('payments1: ', payment)
         if (payment) {
-            // console.log("currentUser.name=========>", currentUser.name)
-            // //console.log("Transcation id===============>", payment.source.id)
-            // console.log("currentUser.name===================>", currentUser.name)
-            // console.log("currentUser.email==================>", currentUser.email)
-            // console.log("currentUser._id==================>", currentUser._id)
-            // console.log("token.card.address_city============>", token.card.address_city)
-            // console.log("token.card.address_country=================>", token.card.address_country)
+            
             const newOrder = new Order({
                 name: currentUser.name,
                 email: currentUser.email,
@@ -74,7 +68,7 @@ router.get('/getallorders', async (req, res) => {
     //const { userid } = req.body;
     try {
         const orders = await Order.find({}).sort({ _id: -1 })
-        console.log("orders are: ", orders)
+        // console.log("orders are: ", orders)
         res.send(orders)
     } catch (error) {
         return res.status(400).json({ 'message': 'Something went wrong' + error });

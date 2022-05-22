@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 const Pizzaslist = () => {
     const dispatch = useDispatch()
     const pizzasstate = useSelector((state) => state.getAllPizzasReducer)
-    console.log('pizzasstate1: ', pizzasstate)
+    //console.log('pizzasstate1: ', pizzasstate)
     const { pizzas, error, loading } = pizzasstate
 
     useEffect(() => {

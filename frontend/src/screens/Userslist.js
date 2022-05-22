@@ -15,27 +15,8 @@ const Userslist = () => {
   useEffect(() => {
     dispatch(getAllUsers())
   }, [users])
-  // const [show, setShow] = useState(false);
-  // const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
-
-  // const [role, setRole] = useState('')
-  // const [id, setId] = useState()
-
-  // function formHandler(e) {
-  //   e.preventDefault()
-  //   const editeduser = {
-  //     id,
-  //     role
-  //   }
-  //   console.log('edit user: ', editeduser)
-  //   dispatch(editUserRole(editeduser))
-  // }
-
-  // useEffect(() => {
-  //   setId(users._id),
-  //   setRole(users.role)
-  // }, [])
+  
+ 
   
   return (
     <div>
@@ -52,8 +33,7 @@ const Userslist = () => {
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody className='scroll-bar' style={{'overflow-x':'scroll', width:'10px', height:'200px', position:'relative'}}>
-
+        <tbody>
           {users && users.map(user => {
             return (<Edituser key={user._id} user={user} />)
           })}

@@ -36,7 +36,7 @@ router.post("/register", async (req, res) => {
             const mailOptions = {
                 from: process.env.SMPT_MAIL,
                 to: newUser.email,
-                subject: "PizzaShop - verification email",
+                subject: "PPizza - verification email",
                 //text: "hii!! this is me"
                 html: `<h2>${newUser.name}! thanks for registering on our site</h2>
                    <h4>Please verify your mail to continue...</h4>
@@ -71,10 +71,10 @@ router.get('/verify-email', async (req, res) => {
             user.emailToken = null
             user.isVerified = true
             await user.save()
-            res.redirect('http://localhost:3000/login')
+            res.redirect(`${req.protocol}://${req.headers.host}/login`)
         }
         else {
-            res.redirect('http://localhost:3000/register')
+            res.redirect(`${req.protocol}://${req.headers.host}/register`)
             console.log('Email is not verified')
         }
 
@@ -126,7 +126,6 @@ router.get('/logout', async (req, res)=>{
             success: true,
             message: 'Log Out Successfully'
         })
-        //res.redirect('http://localhost:3000/login')
     } catch (error) {
         res.status(500).json({
             success: false,
@@ -192,7 +191,7 @@ router.post("/editrole", async (req, res) => {
 router.post("/forgot_password", JWT.logoutRequired, async (req, res)=>{
     try {
         const email = req.body.email;
-        console.log('f_user_email: ', email)
+        //console.log('f_user_email: ', email)
         const userData = await User.findOne({email: email})
         if(userData)
         {
@@ -207,7 +206,7 @@ router.post("/forgot_password", JWT.logoutRequired, async (req, res)=>{
                 const mailOptions = {
                     from: process.env.SMPT_MAIL,
                     to: email,
-                    subject: "PizzaShop - Password Reset mail",
+                    subject: "PPizza - Password Reset mail",
                     html: `<h2>Hi ${userData.name}! thanks for registering on our site</h2>
                    <h4>For reset your password click the below link</h4>
                    <a href="${req.protocol}://${req.headers.host}/reset_password/${randomStr}">Reset Your Password</a>`

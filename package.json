@@ -8,7 +8,7 @@
     "start": "node pizza_backend/server.js",
     "client": "cd frontend && npm start",
     "dev": "concurrently \"nodemon pizza_backend/server.js\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm install --prefix frontend && npm run build --prefix frontend"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm install --prefix frontend && npm install --prefix pizza_backend && npm run build --prefix frontend"
   },
   "author": "prarinam deria",
   "license": "ISC",
