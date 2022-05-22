@@ -35,9 +35,9 @@ app.use(express.json());
 connectDatabase()
 
 
-app.get('/',(req, res)=>{
-    res.send("Server working on" + process.env.PORT);
-});
+// app.get('/',(req, res)=>{
+//     res.send("Server working on" + process.env.PORT);
+// });
 
 app.use('/api/pizzas/',pizzasRoute)
 app.use('/api/users/', userRoute)

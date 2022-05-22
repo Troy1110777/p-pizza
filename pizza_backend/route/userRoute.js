@@ -71,10 +71,10 @@ router.get('/verify-email', async (req, res) => {
             user.emailToken = null
             user.isVerified = true
             await user.save()
-            res.redirect('http://localhost:3000/login')
+            res.redirect(`${req.protocol}://${req.headers.host}/login`)
         }
         else {
-            res.redirect('http://localhost:3000/register')
+            res.redirect(`${req.protocol}://${req.headers.host}/register`)
             console.log('Email is not verified')
         }
 
@@ -126,7 +126,6 @@ router.get('/logout', async (req, res)=>{
             success: true,
             message: 'Log Out Successfully'
         })
-        //res.redirect('http://localhost:3000/login')
     } catch (error) {
         res.status(500).json({
             success: false,
