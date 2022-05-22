@@ -36,7 +36,7 @@ const Navbar = () => {
                                         <a className="dropdown-item" href="/admin">Admin Dashboard</a>
                                 )}
                                     <a className="dropdown-item" href="/orders">Orders</a>
-                                    <a className="dropdown-item" onClick={() => { dispatch(logOutUser()) }}>Logout</a>
+                                    <a className="dropdown-item" style={{cursor:'pointer'}} onClick={() => { dispatch(logOutUser()) }}>Logout</a>
                                     {/* <li onClick={() => { dispatch(logOutUser()) }}>Logout</li> */}
                                 </div>
                             </div>

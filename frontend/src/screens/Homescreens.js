@@ -29,8 +29,9 @@ const Homescreens = () => {
         <Fragment>
             <Filter />
             <div className="banner">
-                    <p>Welcome to PizzaKing</p>
+                    <p>Welcome to PPizza</p>
                     <h1>FIND AMAZING PIZZAS BELOW UNDER SUITABLE PRICES</h1>
+                    <p>Great Until The Last Slice</p>
 
                 <a >
                     <button className='scrollbtn' onClick={Scroll}>

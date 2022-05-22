@@ -30,7 +30,7 @@ const Adminscreen = () => {
                 </div>
                 
                 <div className="col justify-content-center" style={{ border: '0px solid green'}}>
-                    <div className='col-md-12' style={{ border: '0px solid red' }}>
+                    <div className='col-md-12' style={{ border: '0px solid red'}}>
                         <Outlet />
                     </div>
                 </div>

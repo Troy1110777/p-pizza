@@ -19,8 +19,7 @@ const Orderslist = () => {
       {loading && (<Loading />)}
       {error && (<Error error="Something went wrong" />)}
       <h2>Orders List</h2>
-      <table className="table table-striped table-bordered">
-
+      <table className="table table-bordered">
         <thead className="thead table-dark">
           <tr>
             <th>Order Id</th>
@@ -32,15 +31,15 @@ const Orderslist = () => {
           </tr>
         </thead>
         <tbody>
-          {orders && orders.map(order => {
-            return <tr>
-              <td>{order._id}</td>
-              <td>{order.email}</td>
-              <td>{order.userid}</td>
-              <td>{order.orderAmount}</td>
+          {orders && orders.map(order=>{
+            return <tr className='order_list'>
+              <td >{order._id}</td>
+              <td >{order.email}</td>
+              <td >{order.userid}</td>
+              <td >{order.orderAmount}</td>
 
-              <td>{order.createdAt.substring(0, 10)}</td>
-              <td>{order.isDelivered ? (<h1 style={{color:'green'}}>Delivered</h1>) : (<button className="btn" onClick={()=>{dispatch(deliverOrder(order._id))}}>Deliver</button>)}</td>
+              <td >{order.createdAt.substring(0, 10)}</td>
+              <td >{order.isDelivered ? (<h1 style={{ color: 'green' }}>Delivered</h1>) : (<button className="btn" onClick={() => { dispatch(deliverOrder(order._id)) }} style={{ fontSize: '10px' }}>Deliver</button>)}</td>
             </tr>
           })}
         </tbody>

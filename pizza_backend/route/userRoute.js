@@ -191,7 +191,7 @@ router.post("/editrole", async (req, res) => {
 router.post("/forgot_password", JWT.logoutRequired, async (req, res)=>{
     try {
         const email = req.body.email;
-        console.log('f_user_email: ', email)
+        //console.log('f_user_email: ', email)
         const userData = await User.findOne({email: email})
         if(userData)
         {
