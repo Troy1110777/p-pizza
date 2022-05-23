@@ -7,7 +7,7 @@ const Navbar = () => {
     const userState = useSelector(state=>state.loginUserReducer)
     const {currentUser} = userState
     const dispatch = useDispatch()
-    console.log('cartstateN: ',cartstate.cartItems.length);
+    //console.log('cartstateN: ',cartstate.cartItems.length);
 
     return (
         <div>

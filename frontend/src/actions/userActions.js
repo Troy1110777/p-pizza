@@ -5,7 +5,7 @@ export const registerUser = (user) => async dispatch =>{
     dispatch({type:"USER_REGISTER_REQUEST"});
     try{
         const response = await axios.post('/api/users/register', user)
-        console.log('reg response: ', response.data)
+        //console.log('reg response: ', response.data)
         dispatch({ type: "USER_REGISTER_SUCCESS", payload:response.data })
     }
     catch (error)
@@ -101,7 +101,7 @@ export const forgetPassword=(email)=> async dispatch=>{
     dispatch({ type: 'USER_FORGOTPASSWORD_REQUEST' })
     try {
         const f_response = await axios.post('/api/users/forgot_password', {email} )
-        console.log('f_response: ', f_response.data)
+        //console.log('f_response: ', f_response.data)
         dispatch({ type: 'USER_FORGOTPASSWORD_SUCCESS', payload: f_response.data })
     } catch (error) {
         dispatch({ type: 'USER_FORGOTPASSWORD_FAILED', payload: error })
@@ -112,7 +112,7 @@ export const resetPassword = (passW) => async dispatch => {
     dispatch({ type: 'USER_RESETPASSWORD_REQUEST' })
     try {
         const f_response = await axios.post('/api/users/reset_password', passW)
-        console.log('f_response: ', f_response.data)
+        //console.log('f_response: ', f_response.data)
         dispatch({ type: 'USER_RESETPASSWORD_SUCCESS', payload: f_response.data })
         window.location.href="/login"
     } catch (error) {

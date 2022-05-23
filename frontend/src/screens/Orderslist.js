@@ -32,7 +32,7 @@ const Orderslist = () => {
         </thead>
         <tbody>
           {orders && orders.map(order=>{
-            return <tr className='order_list'>
+            return <tr className='order_list' key={ order._id }>
               <td >{order._id}</td>
               <td >{order.email}</td>
               <td >{order.userid}</td>

@@ -34,7 +34,7 @@ const Pizzaslist = () => {
                 </thead>
                 <tbody>
                     {pizzas && pizzas.map(pizza=>{
-                        return <tr>
+                        return <tr key={pizza._id}>
                             <td style={{ fontSize: '14px' }}>{pizza.name}</td>
                             <td><img style={{height: '5pc', width: '7pc', position:'center'}} src={pizza.image} /></td>
                             <td style={{fontSize:'14px'}}>

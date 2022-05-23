@@ -1,5 +1,5 @@
 const express = require('express');
-const env = require('dotenv').config('.env');
+//const env = require('dotenv').config('.env');
 const connectDatabase = require('./config/database');
 const Pizza=require('./models/pizzaModel')
 
