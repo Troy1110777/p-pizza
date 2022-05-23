@@ -1,5 +1,5 @@
 export const addToCart=(pizza, quantity, varient)=>(dispatch, getState)=>{
-    console.log("localStorage.getItem('currentUser'): ", JSON.parse(localStorage.getItem('currentUser'))['_id'])
+    //console.log("localStorage.getItem('currentUser'): ", JSON.parse(localStorage.getItem('currentUser'))['_id'])
     var cartItem = {
         userid: JSON.parse(localStorage.getItem('currentUser'))['_id'],
         name: pizza.name,
@@ -23,7 +23,7 @@ export const addToCart=(pizza, quantity, varient)=>(dispatch, getState)=>{
 
     const cartItems = getState().cartReducer.cartItems
     
-    console.log('cartItems: ', cartItems)
+    //console.log('cartItems: ', cartItems)
     localStorage.setItem('cartItems', JSON.stringify(cartItems))//we have to update the localstorage
 }
 
