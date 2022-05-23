@@ -5,9 +5,9 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
         case 'ADD_TO_CART':
             
             const alreadyExist = state.cartItems.find(item => item._id === action.payload._id);
-            console.log('alreadyexist: ', alreadyExist);
+            //console.log('alreadyexist: ', alreadyExist);
             if (alreadyExist) {
-                console.log('action.payload in exist: ', action.payload);
+                //console.log('action.payload in exist: ', action.payload);
                 return {
                     ...state,
                     cartItems: state.cartItems.map(item => item._id === action.payload._id ? action.payload : item)
