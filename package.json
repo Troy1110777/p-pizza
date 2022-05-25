@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node pizza_backend/server.js",
     "client": "cd frontend && npm start",
-    "dev": "concurrently \"nodemon pizza_backend/server.js\" \"npm run client\"",
+    "server": "cd pizza_backend && nodemon server",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm install --prefix frontend && npm install --prefix pizza_backend && npm run build --prefix frontend"
   },
   "author": "prarinam deria",

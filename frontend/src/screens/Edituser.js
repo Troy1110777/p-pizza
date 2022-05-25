@@ -6,11 +6,7 @@ import { editUserRole } from '../actions/userActions';
 
 const Edituser = ({ user }) => {
     const dispatch = useDispatch()
-    //const usersstate = useSelector((state) => state.getAllUserReducer)
-    // const { users, error, loading } = usersstate
-    // useEffect(() => {
-    //     dispatch(getAllUsers())
-    // }, [])
+    
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -23,11 +19,12 @@ const Edituser = ({ user }) => {
             id,
             role
         }
-        console.log('edit user: ', editeduser)
-        dispatch(editUserRole(editeduser))
+        //console.log('edit user: ', editeduser)
+        dispatch(editUserRole(editeduser));
     }
+
+    
     return (<tr className='col-md-5'>
-        {/* <tr style={{ fontSize: '6px' }}> */}
             <td style={{ fontSize: '12px' }}>{user.name}</td>
             <td style={{ fontSize: '12px' }}>
                 {user.email}
@@ -41,7 +38,7 @@ const Edituser = ({ user }) => {
                 <i className='fa fa-edit m-3' style={{ cursor: 'pointer' }} onClick={handleShow}></i>
             </td>
         
-            <Modal show={show} onHide={handleClose} style={{ 'z-index': '600000' }}>
+            <Modal show={show} onHide={handleClose} style={{ 'zIndex': '600000' }}>
                 <Modal.Header closeButton>
                     <Modal.Title>{user.name}</Modal.Title>
                 </Modal.Header>

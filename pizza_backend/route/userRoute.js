@@ -24,7 +24,7 @@ router.post("/register", async (req, res) => {
             res.status(200).json({
                 success: false,
                 warning: true,
-                message: "User Already Exist2"
+                message: "User Already Exist"
             })
         }
         else {
@@ -193,7 +193,8 @@ router.post("/forgot_password", JWT.logoutRequired, async (req, res)=>{
         const email = req.body.email;
         //console.log('f_user_email: ', email)
         const userData = await User.findOne({email: email})
-        if(userData)
+        //console.log("userData: ", userData)
+        if(userData !== null)
         {
             //console.log("userData1:", userData)
             if(userData.isVerified === true)
@@ -222,22 +223,26 @@ router.post("/forgot_password", JWT.logoutRequired, async (req, res)=>{
                 })
                 res.status(200).json({
                     'success': true,
-                    'message':"Password Reset Link Has been sent to your email"
+                    'message':"Password Reset Link Has been sent to your email",
+                    'error': false
                 })
             }
         }
         else{
-            return res.status(400).json({
-                success: false,
-                message: "User Email not exist"
+            res.send({
+                'message':'User Does not Exist',
+                'error': true,
+                'success': false,
+                'statusCode': 401
+
             })
         }
     } catch (error) {
-        return res.status(500).json({
-            success: false,
-            message: error
+        res.status(500).json({
+            'success': false,
+            'message': error,
+            'error': true
         })
-        //console.log(error)
     }
 })
 
@@ -250,21 +255,23 @@ router.post('/reset_password', JWT.logoutRequired, async(req, res)=>{
         // console.log('cpassword: ', cpassword)
         // console.log('reset_token: ', reset_token)
         //console.log('f_tokenData1: ', forgetPassToken)
-        const tokenData = await User.findOne({ forgetPassword_token: reset_token})
-        // console.log('f_tokenData2: ',tokenData)
-        if(tokenData)
-        {
-            tokenData.forgetPassword_token = null
-            const salt = bcrypt.genSaltSync(10)
-            const hashPassword = await bcrypt.hash(password, salt)
-            //console.log("hashed P: ", hashPassword)
-            tokenData.password = hashPassword
-            await tokenData.save()
-           
-            res.status(200).json({
-                success: true,
-                message: 'Password Reset Successfully'
-            })
+        if(password === cpassword){
+            const tokenData = await User.findOne({ forgetPassword_token: reset_token})
+            // console.log('f_tokenData2: ',tokenData)
+            if(tokenData)
+            {
+                tokenData.forgetPassword_token = null
+                const salt = bcrypt.genSaltSync(10)
+                const hashPassword = await bcrypt.hash(password, salt)
+                //console.log("hashed P: ", hashPassword)
+                tokenData.password = hashPassword
+                await tokenData.save()
+            
+                res.status(200).json({
+                    success: true,
+                    message: 'Password Reset Successfully'
+                })
+            }
         }
         else{
             res.status(404).json({
@@ -276,7 +283,7 @@ router.post('/reset_password', JWT.logoutRequired, async(req, res)=>{
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: error
+            message: 'This Email Is Not Exist'
         })        
     }
 })

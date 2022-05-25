@@ -2,6 +2,9 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart, deleteFromCart } from '../actions/cartActions';
 import Checkout from '../components/Checkout';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Cartscreen = () => {
     const cartstate = useSelector((state) => state.cartReducer)
@@ -32,9 +35,8 @@ const Cartscreen = () => {
                                     <img src={item.image} alt='' style={{ height: '80px', width: '80px' }} />
                                 </div>
                                 <div className="m-1 w-100">
-                                    <i className="fas fa-trash mt-2" onClick={() => { dispatch(deleteFromCart(item)) }}></i>
+                                    <i className="fas fa-trash mt-2" onClick={() => { dispatch(deleteFromCart(item)); toast.success('Pizza is Successfully Deleted from Your Cart'); }}></i>
                                 </div>
-
                             </div>
 
                         )
@@ -46,6 +48,17 @@ const Cartscreen = () => {
                     <Checkout subtotal={subtotal} />
                 </div>
             </div>
+            <ToastContainer position="top-right"
+                className="toastBody"
+                theme='colored'
+                autoClose={4000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={true}
+                rtl={false}
+                style={{ zIndex: "800000000" }}
+                toastClassName="dark-toast"
+            />
         </div>
     )
 }

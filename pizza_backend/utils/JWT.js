@@ -31,7 +31,7 @@ const loginRequired= async (req, res, next)=>{
 const verifyEmail=async (req, res, next)=>{
     try {
         const user = await User.findOne({email: req.body.email})
-        if(user.isVerified)
+        if(user && user.isVerified)
         {
             next()
         }
@@ -47,8 +47,17 @@ const logoutRequired =async (req, res, next) => {
     const token = req.cookies['access-token']
     console.log('cookies: ', token)
     if(token) {
-        alert("You are Already Logged In")
-        res.redirect('/')
+        //alert("You are Already Logged In")
+        try{
+            res.redirect('http://localhost:3000/')
+            // res.sendStatus(500).json({
+            //     success: false,
+            //     message: 'User already Logged In'
+            // })
+        }
+        catch(err){
+            console.log('err: ', error)
+        }
     }
     else{
         next()

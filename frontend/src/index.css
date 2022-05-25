@@ -250,9 +250,11 @@ small{
   .order_list tr td th{
     font-size: 8px;
   }
+
 }
-
-
+.Toastify__toast-container {
+  z-index:80000000;
+}
 /*  Footer CSS  */
 footer {
   margin-top: 10vmax;

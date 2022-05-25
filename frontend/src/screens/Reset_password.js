@@ -8,7 +8,7 @@ import { resetPassword } from '../actions/userActions'
 
 const Reset_password = ({match}) => {
     match = { params: useParams() }
-    console.log('match: ', match.params.reset_token)
+    //console.log('match: ', match.params.reset_token)
     const dispatch = useDispatch()
     const [password, setPassword] = useState('')
     const [cpassword, setCpassword] = useState('')
@@ -27,8 +27,12 @@ const Reset_password = ({match}) => {
             password,
             cpassword
         }
-        dispatch(resetPassword(passW))
-        //prarinamderia2000@gmail.com
+        if(password !== cpassword)
+        {
+            alert('Password Does Not Matched')
+        }
+        if(password !=='' && cpassword !== '')
+            dispatch(resetPassword(passW))
 
     }
   return (
@@ -41,11 +45,10 @@ const Reset_password = ({match}) => {
 
                   <h2 className="text-center m-2" style={{ fontSize: "35px" }}>Reset Password</h2>
                   
-                  <div>
-                      <input type="email" placeholder="Enter Your New Password" className="form-control" value={password} onChange={(e) => { setPassword(e.target.value) }} required /><br />
-                      <input type="email" placeholder="Confirm Your New Password" className="form-control" value={cpassword} onChange={(e) => { setCpassword(e.target.value) }} required /><br />
-                      <small>Please Enter your email for getting password link</small>
-                      <button className="btn justify-content mt-3 mb-3" style={{ 'marginLeft': '17pc' }} onClick={reset_password}>SUBMIT</button>
+                  <div style={{ 'textAlign': 'center' }}>
+                      <input type="password" placeholder="Enter Your New Password" className="form-control" value={password} onChange={(e) => { setPassword(e.target.value) }} required /><br />
+                      <input type="password" placeholder="Confirm Your New Password" className="form-control" value={cpassword} onChange={(e) => { setCpassword(e.target.value) }} required /><br />
+                      <button className="btn justify-content mt-3 mb-3"  onClick={reset_password}>SUBMIT</button>
                       <br />
                   </div>
               </div>

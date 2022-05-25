@@ -38,7 +38,7 @@ const Editpizza = ({ match }) => {
             },
         }
         dispatch(editPizza(editedpizza))
-        console.log("pizza: ", pizza)
+        //console.log("pizza: ", pizza)
     }
 
     useEffect(() => {
@@ -67,8 +67,8 @@ const Editpizza = ({ match }) => {
         <div>
             <h2>Edit Pizza</h2>
             <h1>Pizza id= {match.params.pizzaid}</h1>
-            <img class="form-control" src={image} style={{ width: '13pc', height: '15pc', float: 'right', marginLeft: '2pc' }} />
-            <div class="col-md-9" style={{ display: 'inline-block', border: '0px solid blue', marginRight: '1pc' }}>
+            <img className="form-control" src={image} style={{ width: '13pc', height: '15pc', float: 'right', marginLeft: '2pc' }} />
+            <div className="col-md-9" style={{ display: 'inline-block', border: '0px solid blue', marginRight: '1pc' }}>
                 <div className='text-left'>
                     {loading && (<Loading />)}
                     {error && (<Error error="something went wrong" />)}

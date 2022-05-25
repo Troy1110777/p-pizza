@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { deletePizza, getAllPizzas } from '../actions/pizzaActions'
 import Error from '../components/Error';
 import Loading from '../components/Loading';
-import { Link, Outlet } from 'react-router-dom';
 import { deliverOrder, getAllOrders } from '../actions/orderActions';
 
 const Orderslist = () => {
