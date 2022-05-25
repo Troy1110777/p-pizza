@@ -6,6 +6,7 @@ router.get("/getallpizzas", async (req, res) => {
     try {
         const pizzas = await Pizza.find({});
         res.send(pizzas)
+        //console.log('pizzas: ', pizzas)
     }
     catch (error) {
         return res.status(400).json({ message: error });
@@ -62,7 +63,7 @@ router.post('/deletepizza', async(req, res)=>{
     const pizzaid = req.body.pizzaid
     try {
         const response = await Pizza.findByIdAndDelete(pizzaid)
-        console.log(response)
+        //console.log(response)
         res.send("pizza deleted Successfully")
     } catch (error) {
         return res.status(400).json({ message: error });

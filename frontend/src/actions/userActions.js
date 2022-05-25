@@ -22,6 +22,7 @@ export const loginUser = (user) => async dispatch =>{
         //console.log('login response: ', response)
         dispatch({ type: "USER_LOGIN_SUCCESS", payload: response.data })
         localStorage.setItem('currentUser', JSON.stringify(response.data))
+        sessionStorage.setItem('currentUser', JSON.stringify(response.data))
         window.location.href='/'
 
     }catch (error)
@@ -42,6 +43,7 @@ export const logOutUser=()=> async dispatch =>{
         //console.log('logout_response: ', response)
         dispatch({ type: 'LOGOUT_SUCCESS' });
         localStorage.removeItem('currentUser')
+        sessionStorage.removeItem('currentUser')
         window.location.href = '/login' //reload
     } catch (error) {
         dispatch({ type: 'LOGOUT_FAIL', payload: error.response.data.message });
@@ -100,10 +102,21 @@ export const editUserRole = (editeduser)=>async dispatch =>{
 export const forgetPassword=(email)=> async dispatch=>{
     dispatch({ type: 'USER_FORGOTPASSWORD_REQUEST' })
     try {
-        const f_response = await axios.post('/api/users/forgot_password', {email} )
-        //console.log('f_response: ', f_response.data)
-        dispatch({ type: 'USER_FORGOTPASSWORD_SUCCESS', payload: f_response.data })
-    } catch (error) {
+        if(localStorage.getItem('currentUser')){
+            var payload={
+                'warning': true,
+                'message': 'You Are Already Logged In'
+            }
+            dispatch({ type: 'USER_FORGOTPASSWORD_SUCCESS', payload: payload })
+        }
+        else{
+            const f_response = await axios.post('/api/users/forgot_password', {email})
+            //console.log('f_response: ', f_response)
+            dispatch({ type: 'USER_FORGOTPASSWORD_SUCCESS', payload: f_response.data })
+        }
+    } 
+    catch (error) {
+        //const f_response = await axios.post('/api/users/forgot_password', { email })
         dispatch({ type: 'USER_FORGOTPASSWORD_FAILED', payload: error })
     }
 }

@@ -26,8 +26,9 @@ const Registerscreen = () => {
                 email,
                 password
             }
-            console.log(user)
-            dispatch(registerUser(user))
+            //console.log(user)
+            if (email !== '' && password !== '' && password !== '')
+                dispatch(registerUser(user))
         }
         
     }

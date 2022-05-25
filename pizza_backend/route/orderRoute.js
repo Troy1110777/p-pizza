@@ -2,8 +2,14 @@ const express = require('express');
 const router = express.Router()
 const { v4: uuidv4 } = require('uuid')
 const Order = require('../models/orderModel')
+
+if (process.env.NODE_ENV !== "PRODUCTION") {
+    require('dotenv').config('.env');
+}
+
 const stripe = require("stripe")(process.env.STRIPE_KEY)
 
+//console.log('STRIPE_KEY: ', process.env.STRIPE_KEY );
 
 router.post("/placeorder", async (req, res) => {
     const { token, subtotal, currentUser, cartItems } = req.body;
@@ -23,7 +29,7 @@ router.post("/placeorder", async (req, res) => {
         })
         //console.log('payments1: ', payment)
         if (payment) {
-            
+
             const newOrder = new Order({
                 name: currentUser.name,
                 email: currentUser.email,
@@ -40,17 +46,16 @@ router.post("/placeorder", async (req, res) => {
             })
             //console.log("newOrders: ", newOrder)
             newOrder.save()
-            res.send('Payment Done')
+            res.status(200).json({'success': true, 'message': 'Payment Done'})
         }
         else {
-            res.send('Payment Failed')
+            res.status(400).json({ 'success': true, 'message': 'Payment Failed' })
         }
     }
     catch (error) {
         return res.status(400).json({ 'message': 'Something went wrong' + error });
     }
 })
-
 
 router.post('/getuserorders', async (req, res) => {
     const { userid } = req.body;

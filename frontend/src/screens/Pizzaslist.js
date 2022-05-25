@@ -4,7 +4,8 @@ import { deletePizza, getAllPizzas } from '../actions/pizzaActions'
 import Error from '../components/Error';
 import Loading from '../components/Loading';
 import { Link } from 'react-router-dom';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Pizzaslist = () => {
     const dispatch = useDispatch()
@@ -16,6 +17,7 @@ const Pizzaslist = () => {
         dispatch(getAllPizzas())
     }, [])
 
+    
     return (
         <div>
             <h2>Pizzas List</h2>
@@ -44,13 +46,24 @@ const Pizzaslist = () => {
                             </td>
                             <td style={{ fontSize: '14px' }}>{pizza.category}</td>
                             <td>
-                                <i className='fa fa-trash m-3' style={{cursor:'pointer'}} onClick={()=>{dispatch(deletePizza(pizza._id))}}></i>
+                                <i className='fa fa-trash m-3' style={{ cursor: 'pointer' }} onClick={() => { toast.success('Pizza Deleted Successfully');dispatch(deletePizza(pizza._id));}}></i>
                                 <Link to={`/admin/editpizza/${pizza._id}`}><i className='fa fa-edit m-3'></i></Link>
                             </td>
                         </tr>
                     })}
                 </tbody>
             </table>
+            <ToastContainer position="top-right"
+                theme='colored'
+                bodyClassName='toastBody'
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={true}
+                rtl={false}
+                style={{ zIndex: "80000000" }}
+                toastClassName="dark-toast"
+            />
         </div>
     )
 }

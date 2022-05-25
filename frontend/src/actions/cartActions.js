@@ -20,16 +20,15 @@ export const addToCart=(pizza, quantity, varient)=>(dispatch, getState)=>{
     else{
         dispatch({ type: 'ADD_TO_CART', payload: cartItem })
     }
-
     const cartItems = getState().cartReducer.cartItems
-    
     //console.log('cartItems: ', cartItems)
-    localStorage.setItem('cartItems', JSON.stringify(cartItems))//we have to update the localstorage
+    localStorage.setItem('cartItems', JSON.stringify(cartItems)) //we have to update the localstorage
 }
 
 export const deleteFromCart= (pizza)=>(dispatch, getState) =>{
     dispatch({type:'DELETE_FROM_CART', payload: pizza})
     //after deletion update the local storage
     const cartItems = getState().cartReducer.cartItems
+    //console.log('DcartItem: ', cartItems)
     localStorage.setItem('cartItems', JSON.stringify(cartItems))
 }

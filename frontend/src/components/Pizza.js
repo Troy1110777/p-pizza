@@ -2,6 +2,8 @@ import React,{useState} from 'react';
 import { Modal } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart } from '../actions/cartActions';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Pizza = ({ pizza }) => {
     const [quantity, setQuantity] = useState(1)
@@ -14,6 +16,7 @@ const Pizza = ({ pizza }) => {
 
     function addtocart(){
         dispatch(addToCart(pizza, quantity, varient))
+        toast.success('Pizza Added to Your Cart');
     }
     return (
         <div className='shadow-lg p-3 mb-5 mt-4 bg-white rounded' >
@@ -45,16 +48,17 @@ const Pizza = ({ pizza }) => {
                 </div>
                 <div className="m-10 w-100" >
                     <button className="btn" onClick={addtocart}>ADD TO CART</button>
+                    
                 </div>
             </div>
 
 
-            <Modal show={show} onHide={handleClose} style={{'z-index':'600000'}}>
+            <Modal show={show} onHide={handleClose} style={{'zIndex':'600000'}}>
                 <Modal.Header closeButton>
                     <Modal.Title>{pizza.name}</Modal.Title>
                 </Modal.Header>
 
-                <Modal.Body style={{'text-align':'center'}}>
+                <Modal.Body style={{'textAlign':'center'}}>
                     <img src={pizza.image} className="img-fluid" style={{ height: '300px', width: '300px' }} />
                     <p>{pizza.description}</p>
                 </Modal.Body>
@@ -64,7 +68,17 @@ const Pizza = ({ pizza }) => {
                 </Modal.Footer>
             </Modal>
 
-
+            <ToastContainer position="top-right"
+                theme='colored'
+                className="toastBody"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={true}
+                rtl={false}
+                style={{ zIndex: "800000000" }}
+                toastClassName="dark-toast"
+                />
         </div>
     )
 }

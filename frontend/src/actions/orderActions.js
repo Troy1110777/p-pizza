@@ -8,12 +8,12 @@ export const placeOrder = (token, subtotal) => async (dispatch, getState) => {
     const cartItems = getState().cartReducer.cartItems
     try {
 
-        if(currentUser){
+        if (currentUser) {
             const response = await axios.post('/api/orders/placeorder', { token, subtotal, currentUser, cartItems })
-            //console.log('response: ', response)
+            //console.log('Oresponse: ', response)
             dispatch({ type: 'PLACE_ORDER_SUCCESS' })
         }
-      
+
     }
     catch (error) {
         dispatch({ type: 'PLACE_ORDER_FAILED' })
@@ -63,7 +63,7 @@ export const deliverOrder =(orderid)=> async (dispatch)=>{
         const orders = await axios.get('/api/orders/getallorders')
         dispatch({ type: 'GET_ALLORDERS_SUCCESS', payload: orders.data })
     } catch (error) {
-        console.log(error)
+        //console.log(error)
         alert("Some Error Occured, order could not processed")
         
     }

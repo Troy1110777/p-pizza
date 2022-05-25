@@ -7,7 +7,6 @@ export const registerUserReducer = (state = {}, action) => {
 
             }
         case 'USER_REGISTER_SUCCESS':
-            console.log('action.payload: ', action.payload.message)
             return {
                 loading: false,
                 success: action.payload.success,
@@ -44,6 +43,7 @@ export const loginUserReducer = (state = {}, action) => {
         case 'USER_LOGIN_FAILED':
             return {
                 loading: false,
+                success: false,
                 error: action.payload,
 
             }
@@ -151,17 +151,19 @@ export const forgetPasswordUserReducer = (state={}, action) =>{
                 ...state
             }
         case 'USER_FORGOTPASSWORD_SUCCESS':
-            console.log('f_action.payload: ', action.payload.message)
             return {
                 loading: false,
                 success: action.payload.success,
-                message: action.payload.message
+                message: action.payload.message,
+                warning: action.payload.warning,
+                error: action.payload.error
             }
 
         case 'USER_FORGOTPASSWORD_FAILED':
             return {
                 loading: false,
-                error: action.payload,
+                error: action.payload.error,
+                message: action.payload.message,
             }
         default: return state
     }
